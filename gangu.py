@@ -1,15 +1,17 @@
 import pyttsx3
-import speech_recogniszation as sr
+import speech_recognition as sr
 import datetime
 import wikipedia
 import webbrowser
 import os
 
 
-engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
+#engine = pyttsx3.init('sapi5')
+#voices = engine.getProperty('voices')
 #print(voices[0],id)
-engine.setProperty('voice',voices[0].id)
+#engine.setProperty('voice',voices[0].id)
+engine = pyttsx3.init()
+#engine.say('Good morning.')
 
 
 def speak(audio):
@@ -40,13 +42,13 @@ def takecommand():
 	try:
 		print("Recognizing...")
 		query = r.recognize_google(audio, Lanuage='en-in')
-		print(f "User said: {query}\n")
+		print("User said:", query)
 
 	except Exception as e:
 		#print(e)
-		print("Say  that again Please...")
+		print("Say that again Please...")
 		return "None"
-    return query
+	return query
 
 if __name__=="__main__":
 	Wishme()
@@ -76,7 +78,7 @@ if __name__=="__main__":
 
 		elif 'the time' in query:
 			strTime = datetime.datetime.now().strftime("%H:%M:%S")
-			speak(f"sir, the time is {strTime}")
+			speak("sir, the time is", strTime)
 
 		elif "open notepad" in query:
 			notepadPath = "/usr/bin/gedit"
