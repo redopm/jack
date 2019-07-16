@@ -4,6 +4,7 @@ import datetime
 import wikipedia
 import webbrowser
 import os
+#import pyAudio 
 
 
 #engine = pyttsx3.init('sapi5')
@@ -19,7 +20,7 @@ def speak(audio):
 	engine.runAndWait()
 
 def Wishme():
-	hour = int(datatime.datetime.now().hour)
+	hour = int(datetime.datetime.now().hour)
 	if hour>=0 and hour<12:
 		speak("Good Morning sir!")
 
@@ -29,15 +30,16 @@ def Wishme():
 	else:
 		speak("Good Evening sir!")
 
-	speak("I am Gangu , your personal assistant, how may i help you!")
+	speak("I am jarvis , your personal assistant, how may i help you!")
 
 def takecommand():
 	#
 	r = sr.Recognizer()
-	with sr.Microphone() as source:
+	with sr.Microphone(device_index=1) as source:
 		print("Listening...")
 		r.pause_threshold = 1
-		audio = r.listen(source)
+		#audio = r.listen(source)
+		audio = r.adjust_for_ambient_noise(source, duration=5)
 
 	try:
 		print("Recognizing...")
@@ -52,7 +54,7 @@ def takecommand():
 
 if __name__=="__main__":
 	Wishme()
-	while true:
+	while True:
 		query = takecommand().lower()
 		# logic 
 
