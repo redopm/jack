@@ -10,11 +10,11 @@ from gtts import gTTS
 def speak(audioString):
     print(audioString)
     tts = gTTS(text=audioString, lang='en')
-    filename = '/home/omprakash/ganggu/good.mp3'
+    filename = '/home/omprakash/jack/good.mp3'
 
     # Save audio data
     f = open(filename, 'wb+')
-    f.write(sound_bytes)
+    f.write(tts)
     f.close()
     #tts.save("/home/omprakash/gangu/good.mp3")
     #os.system("/home/omprakash/gangu/good.mp3")
@@ -24,8 +24,8 @@ def recordAudio():
     r = sr.Recognizer()
     with sr.Microphone() as source:
     	print("Say something!")
-    	#audio = r.listen(source)
-    	audio=r.adjust_for_ambient_noise(source, duration=5)
+    	audio = r.listen(source)
+    	audio = r.adjust_for_ambient_noise(source, duration=5)
 
     # Speech recognition using Google Speech Recognition
     data = ""
