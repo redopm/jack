@@ -4,6 +4,7 @@ import time
 import playsound
 import speech_recognition as sr
 import pyttsx3
+import datetime
 
 def speak(text):
     engine = pyttsx3.init()
@@ -20,13 +21,31 @@ def get_audio():
             said = r.recognize_google(audio)
             print(said)
         except Exception as e:
-            print("Please Say somthing... "+ str(e))
-            speak("Please say somethng")
-    return said
+            speak("Please Say somthing... "+ str(e))
+    return said.lower()
 
-text = get_audio()
-if "hello" in text:
-    speak("hello, how are you ?")
+    
+def wishme():
+    hour = int(datetime.datetime.now().hour)
+    if hour >=0 and hour<12:
+        speak("good morning !")
+    elif hour>=12 and hour<18:
+        speak("good afternoon !")
+    else:
+        speak("good evening !")
+
+
+wishme()
+WAKE_UP = "ok jack"
+while True:
+    print("Listening...")
+    text = get_audio()
+    if text.count(WAKE_UP)> 0:
+        speak("what can i do for you ?")
+        text = get_audio()
+    
+
+
 
 
 
