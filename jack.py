@@ -3,13 +3,12 @@ import os
 import time 
 import playsound
 import speech_recognition as sr
-from gtts import gTTS
+import pyttsx3
 
 def speak(text):
-    tts = gTTS(text = text,  lang="en")
-    filename = "good.mp3"
-    tts.save(filename)
-    playsound.playsound(filename)
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait() 
 
 def get_audio():
     r = sr.Recognizer()
