@@ -5,6 +5,8 @@ import playsound
 import speech_recognition as sr
 import pyttsx3
 import datetime
+import subprocess
+
 
 def speak(text):
     engine = pyttsx3.init()
@@ -35,15 +37,46 @@ def wishme():
         speak("good evening !")
 
 
+def note(text):
+    date = datetime.datetime.now()
+    file_name = str(date).replace(":", "-") + "-note.txt"
+    with open(file_name, "w") as f:
+        f.write(text)
+
+    subprocess.Popen(['/usr/bin/gedit', file_name])
+
+
+'''def stop_jack(text):
+    engine.'''
+
 wishme()
-WAKE_UP = "ok jack"
+
+
 while True:
     print("Listening...")
     text = get_audio()
+    WAKE_UP = "ok jack"
     if text.count(WAKE_UP)> 0:
         speak("what can i do for you ?")
         text = get_audio()
-    
+
+        NOTE_TERM = ["make a note", "write this down", "point out", "remember this", "hilight this", "write a note"]
+        for phrese in NOTE_TERM:
+            if phrese in text:
+                speak("what would you like to "+str(phrese)+"?")
+                note_text = get_audio()
+                note(note_text)
+                speak("I have done.")
+
+        BYE = ['bye', 'stop', 'stop listening', "don't listen"]
+        for phrese in BYE:
+            if phrese in text:
+                speak("Ok, have a nice day.")
+                exit()
+            else:
+                speak("i'm sorry. ")
+                
+       
 
 
 
