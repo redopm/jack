@@ -46,18 +46,14 @@ def note(text):
     subprocess.Popen(['/usr/bin/gedit', file_name])
 
 
-'''def stop_jack(text):
-    engine.'''
 
 wishme()
-
-
 while True:
     print("Listening...")
     text = get_audio()
-    WAKE_UP = "ok jack"
+    WAKE_UP = "hello jack"
     if text.count(WAKE_UP)> 0:
-        speak("what can i do for you ?")
+        speak("Hello Sir, what can i do for you ?")
         text = get_audio()
 
         NOTE_TERM = ["make a note", "write this down", "point out", "remember this", "hilight this", "write a note"]
