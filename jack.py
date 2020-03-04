@@ -69,8 +69,7 @@ while True:
             if phrese in text:
                 speak("Ok, have a nice day.")
                 exit()
-            else:
-                speak("i'm sorry. ")
+            
                 
        
 
