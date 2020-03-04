@@ -20,7 +20,7 @@ from time import strftime
 def sofiaResponse(audio):
     "speaks audio passed as argument"
     print(audio)
-    for line in audio.splitlines():
+    for _ in audio.splitlines():
         os.system("say " + audio)
 def myCommand():
     "listens for commands"
