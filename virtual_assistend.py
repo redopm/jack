@@ -20,7 +20,7 @@ from time import strftime
 def sofiaResponse(audio):
     "speaks audio passed as argument"
     print(audio)
-    for _ in audio.splitlines():
+    for line in audio.splitlines():
         os.system("say " + audio)
 def myCommand():
     "listens for commands"
@@ -36,7 +36,7 @@ def myCommand():
     #loop back to continue to listen for commands if unrecognizable speech is received
     except sr.UnknownValueError:
         print('....')
-        command = myCommand();
+        command = myCommand()
     return command
 def assistant(command):
     "if statements for executing commands"
@@ -92,7 +92,7 @@ def assistant(command):
         res = requests.get(
                 'https://icanhazdadjoke.com/',
                 headers={"Accept":"application/json"})
-        if res.status_code == requests.codes.ok:
+        if res.status_code == request.codes.ok:
             sofiaResponse(str(res.json()['joke']))
         else:
             sofiaResponse('oops!I ran out of jokes')
@@ -198,7 +198,7 @@ def assistant(command):
         f.close()
         parsed_json = json.loads(json_string)
         photo = parsed_json['urls']['full']
-        urllib.urlretrieve(photo, "/Users/nageshsinghchauhan/Documents/wallpaper/a") # Location where we download the image to.
+        urllib.request.urlretrieve(photo, "/Users/nageshsinghchauhan/Documents/wallpaper/a") # Location where we download the image to.
         subprocess.call(["killall Dock"], shell=True)
         sofiaResponse('wallpaper changed successfully')
     #askme anything
