@@ -1,4 +1,5 @@
 import nltk
+nltk.download('punkt')
 from nltk.stem.lancaster import LancasterStemmer 
 stemmer = LancasterStemmer()
 
@@ -8,6 +9,7 @@ import random
 import json
 import numpy
 import pickle
+
 
 
 with open("intents.json") as file:
