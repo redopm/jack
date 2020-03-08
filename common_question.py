@@ -66,8 +66,8 @@ except:
     training = numpy.array(training)
     output = numpy.array(output)
 
-    with  open("data.pickle", "wb") as f:
-        words, labels, training, output = pickle.load(f)
+    '''with  open("data.pickle", "wb") as f:
+        words, labels, training, output = pickle.load(f)'''
 
 tensorflow.reset_default_graph()
 
