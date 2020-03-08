@@ -14,9 +14,10 @@ import pickle
 
 with open("intents.json") as file:
     data = json.load(file)
+
 try:
-    with  open("data.pickel", "rb") as f:
-        words, locals, training, output = pickle.load(f)
+    with  open("data.pickle", "rb") as f:
+        words, labels, training, output = pickle.load(f)
      
 except:
     words = []
@@ -65,6 +66,9 @@ except:
     training = numpy.array(training)
     output = numpy.array(output)
 
+    with  open("data.pickle", "wb") as f:
+        words, labels, training, output = pickle.load(f)
+
 tensorflow.reset_default_graph()
 
 net = tflearn.input_data(shape=[None, len(training[0])])
@@ -74,8 +78,39 @@ net = tflearn.fully_connected(net, len(output[0]) , activation = "softmax")
 net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
+try:
+    model.tflearn("model.tflearn")
+except:
+    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+    model.save("model.tflearn")
 
-model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-model.save("model.tflearn")
+def bag_of_words(s, words):
+    bag = [0 for _ in range(len(words))]
+    s_words = nltk.word_tokenize(s)
+    s_words = [stemmer.stem(word.lower()) for word in s_words]
+
+    for se in s_words:
+        for i, w in enumerate(words):
+            if w == se:
+                bag[i] = 1
+    return numpy.array(bag)
+
+def chat():
+    print("start talking with bot: ")
+    while True:
+        imp = input("you: ")
+        if  imp.lower() == "quit":
+            break
+        results = model.predict([bag_of_words(imp, words)])
+        results_index = numpy.argmax(results)
+        tag = labels[results_index]
+        print(tag)
+
+        for tg in data["intents"]:
+            if tg['tag'] == tag:
+                responses = tg['responses']
+        print(random.choice(responses))
 
 
+
+chat()
