@@ -66,8 +66,8 @@ except:
     training = numpy.array(training)
     output = numpy.array(output)
 
-    '''with  open("data.pickle", "wb") as f:
-        words, labels, training, output = pickle.load(f)'''
+    with  open("data.pickle", "wb") as f:
+        pickle.dump((words, labels, training, output), f)
 
 tensorflow.reset_default_graph()
 
@@ -101,16 +101,15 @@ def chat():
         imp = input("you: ")
         if  imp.lower() == "quit":
             break
-        results = model.predict([bag_of_words(imp, words)])
+        results = model.predict([bag_of_words(imp, words)])[0]
         results_index = numpy.argmax(results)
         tag = labels[results_index]
-        print(tag)
-
-        for tg in data["intents"]:
-            if tg['tag'] == tag:
-                responses = tg['responses']
-        print(random.choice(responses))
-
-
+        if results[results_index] > 0.7:
+            for tg in data["intents"]:
+                if tg['tag'] == tag:
+                    responses = tg['responses']
+            print(random.choice(responses))
+        else:
+            print("I didn't get that, try again.")
 
 chat()
