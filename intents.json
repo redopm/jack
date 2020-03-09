@@ -5,28 +5,43 @@
          "context_set": ""
         },
         {"tag": "goodbye",
-         "patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day"],
-         "responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!"],
+         "patterns": ["bye", "See you later", "Goodbye", "I am Leaving", "Have a Good day", "bye bye"],
+         "responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!", "bye for now", "see you soon", "see you later", "see you!", "Have a good day"],
          "context_set": ""
         },
         {"tag": "age",
-         "patterns": ["how old", "how old is tim", "what is your age", "how old are you", "age?"],
-         "responses": ["I am 18 years old!", "18 years young!"],
+         "patterns": ["how old", "how old is jack", "what is your age", "how old are you", "age?"],
+         "responses": ["I was launched in 2019, so i'm still fairly young", "It depends on how you look at it", "well, I launched 2019. so i have not exactly been around for donkey's years"],
          "context_set": ""
         },
         {"tag": "name",
-         "patterns": ["what is your name", "what should I call you", "whats your name?"],
-         "responses": ["You can call me Tim.", "I'm Tim!", "I'm Tim aka Tech With Tim."],
+         "patterns": ["what is your name", "what should I call you", "whats your name?", "name please"," whats your real name", "do you have nickname", "can i chnage your name", "tell me about your self"],
+         "responses": ["Name: Jack. Occupation: helping you. Age: old enough to use internet.", "The name is Jack, virtual assistent", "I'm Jack a personal Virtual Assistent.", "One days i hope a nickname as cool as birbal, he was do knowledgeable", " Sorry, you can't change my name"],
          "context_set": ""
         },
-        {"tag": "shop",
-         "patterns": ["Id like to buy something", "whats on the menu", "what do you reccommend?", "could i get something to eat"],
-         "responses": ["We sell chocolate chip cookies for $2!", "Cookies are on the menu!"],
+        {"tag": "do",
+         "patterns": ["what are you doing ", "what are you donig for me",  "what are you doing right now", "tum kya kr rhe ho"],
+         "responses": ["I can do lots of things. you can ask me for jokes, weather, facts etc.", "I spend some of my time reading poetry", "i was just catching up on the day's top headlines. i'm a bit of news hound",  "Nothing! i just think about new world", "I am work on solving some problem", "I am spend some time to reading joke"],
          "context_set": ""
         },
-        {"tag": "hours",
-         "patterns": ["when are you guys open", "what are your hours", "hours of operation"],
-         "responses": ["We are open 7am-4pm Monday-Friday!"],
+        {"tag": "love",
+         "patterns": ["I love you", "love you", "do you love me?", "say you love me"],
+         "responses": ["I love that super cute thing you do when you say 'hello jack'!", "And I love it when we have a chiwang, but most of all, I love...you ",  "Thanks, you're not so bad yourself!", "cheers, mate, high five!", "Aww, thanks! virtual hug", "you have excellent taste"],
+         "context_set": ""
+        },
+        {"tag": "miss",
+        "patterns": ["i miss you", "miss you"],
+        "responses": ["Until we have chat again ", "Don't worry i'm right here", "they say absence makes the heart grow fonder", "Me too, i'm looking forward to our next chat"],
+        "context_set": ""
+        },
+        {"tag": "like",
+         "patterns": ["i like you", "like you"],
+         "responses": ["Looks like we're tow peas in pod then, because I like you too", "I like the cut of your gib", "Thanks, You just made my day", "Thanks, I like you too. And I promise not to let it get to my head"],
+         "context_set": ""
+        },
+        {"tag": "help",
+         "patterns": ["how you help me", "hepl me", "do you help me"],
+         "responses": ["Try saying 'help me remember important info, set timer, convert units, check news, play music, set alarms, check weather' ", "Yes, I can hepl you! Try saying 'help me remember important info, set timer, convert units, check news, play music, set alarms, check weather, get more info about history and event' "],
          "context_set": ""
         }
    ]
