@@ -10,6 +10,7 @@ import re
 from pyowm import OWM
 
 
+
 def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
@@ -92,7 +93,8 @@ while True:
             if phrese in text:
                 speak("Ok, have a nice day.")
                 exit()
-            
+        
+
                 
        
 
