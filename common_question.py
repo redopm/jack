@@ -9,8 +9,28 @@ import random
 import json
 import numpy
 import pickle
+import playsound
+import speech_recognition as sr
+import pyttsx3
 
 
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait() 
+
+def get_audio():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+        said = ""
+
+        try:
+            said = r.recognize_google(audio)
+            print(said)
+        except Exception as e:
+            speak("Please Say somthing... "+ str(e))
+    return said.lower()
 
 with open("intents.json") as file:
     data = json.load(file)
@@ -96,20 +116,22 @@ def bag_of_words(s, words):
     return numpy.array(bag)
 
 def chat():
-    print("start talking with bot: ")
+    speak("start conversation with Jack. ")
     while True:
-        imp = input("you: ")
-        if  imp.lower() == "quit":
+        inp = get_audio()
+    
+        if  inp.lower() == "quit":
             break
-        results = model.predict([bag_of_words(imp, words)])[0]
+        results = model.predict([bag_of_words(inp, words)])[0]
         results_index = numpy.argmax(results)
         tag = labels[results_index]
         if results[results_index] > 0.7:
             for tg in data["intents"]:
                 if tg['tag'] == tag:
                     responses = tg['responses']
-            print(random.choice(responses))
+            speak(random.choice(responses))
+            
         else:
-            print("I didn't get that, try again.")
+            speak("I didn't get that, try again.")
 
 chat()
