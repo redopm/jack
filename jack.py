@@ -8,7 +8,7 @@ import datetime
 import subprocess
 import re
 from pyowm import OWM
-#import common_question
+import common_question
 
 
 def speak(text):
@@ -68,11 +68,6 @@ while True:
                 note_text = get_audio()
                 note(note_text)
                 speak("I have done.")
-
-        NAME = ["what is your name ", "who are you", "tell me about yourself", "name please", "tumhara nam kya hai"]
-        for phrese in NAME:
-            if phrese in text:
-                #common_question.chat()
 
         Weather = ['current weather', 'What is weather', 'weather', "What is the weather"]
         for phrese in text:
