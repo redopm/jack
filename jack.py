@@ -8,23 +8,26 @@ import datetime
 import subprocess
 import re
 from pyowm import OWM
-import common_question
+#import common_question
 
 
 def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait() 
+    print("Jack: "+ text)
 
 def get_audio():
     r = sr.Recognizer()
     with sr.Microphone() as source:
+        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
         said = ""
 
         try:
             said = r.recognize_google(audio)
-            print(said)
+            print('You: ' +said+"\n")
         except Exception as e:
             speak("Please Say somthing... "+ str(e))
     return said.lower()
@@ -68,6 +71,18 @@ while True:
                 note_text = get_audio()
                 note(note_text)
                 speak("I have done.")
+
+        APP = ["open", " "]
+        for phrese in APP:
+            if phrese in text:
+                os.system(text)
+                speak("your application " +text+ " is opening.")
+
+        TIME = ["what is time", "time please", "current time", "tell me the current time"]
+        for phrese in TIME:
+            if phrese in text:
+                now = datetime.datetime.now()
+                speak('Current time is %d hours %d minutes' % (now.hour, now.minute))
 
         Weather = ['current weather', 'What is weather', 'weather', "What is the weather"]
         for phrese in text:

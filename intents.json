@@ -30,7 +30,7 @@
          "context_set": ""
         },
         {"tag": "miss",
-        "patterns": ["i miss you", "miss you"],
+        "patterns": ["i misimports you", "miss you"],
         "responses": ["Until we have chat again.", "Don't worry i'm right here", "they say absence makes the heart grow fonder", "Me too, i'm looking forward to our next chat"],
         "context_set": ""
         },
