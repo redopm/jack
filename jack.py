@@ -53,19 +53,6 @@ def note(text):
 
     subprocess.Popen(['/usr/bin/gedit', file_name])
 
-# play music with system player
-'''def play(text):
-    path = '/home/omprakash/Music/song/english\ songs/'
-    folder = path
-    for the_file in os.listdir(folder):
-        file_path = os.path.join(folder, the_file)
-        try:
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
-        except Exception as e:
-            print(e)
-            speak('What song shall I play Sir?')
-            mysong = get_audio()'''
 
 # any question you can ask
 def askme(text):
