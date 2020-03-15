@@ -94,6 +94,7 @@ while True:
                 appname = reg_ex.group(1)
                 os.system(appname)
                 speak("your application " +appname+ " is opening.")
+                
 
         TIME = ["what is time", "time please", "current time", "tell me the current time"]
         for phrese in TIME:
