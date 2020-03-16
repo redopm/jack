@@ -77,6 +77,7 @@ while True:
         for phrese in ASKME:
             if phrese in text:
                 askme(text)
+        
 
         
         NOTE_TERM = ["make a note", "write this down", "point out", "remember this", "hilight this", "write a note"]

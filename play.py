@@ -1,50 +1,51 @@
 import os
-import time 
 import playsound
 import speech_recognition as sr
 import pyttsx3
-import datetime
+import time
 
 
-# play music with system player
-def play(text):
-    path = '/home/omprakash/Music/song/english\ songs/'
-    folder = path
-    for the_file in os.listdir(folder):
-        file_path = os.path.join(folder, the_file)
+# text to speak by jack 
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait() 
+    print("Jack: "+ text)
+
+# text recognise by  jack
+def get_audio():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source, duration=1)
+        audio = r.listen(source)
+        said = ""
+
         try:
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
+            said = r.recognize_google(audio)
+            print('You: ' +said)
         except Exception as e:
-            print(e)
-            speak('What song shall I play Sir?')
-            mysong = get_audio()
-         if mysong:
-                flag = 0
-            url = "https://www.youtube.com/results?search_query=" + mysong.replace(' ', '+')
-            response = urllib2.urlopen(url)
-            html = response.read()news_url="https://news.google.com/news/rss"
-            Client=urlopen(news_url)
-            xml_page=Client.read()
-            Client.close()
-            soup_page=soup(xml_page,"xml")
-            news_list=soup_page.findAll("item")
-            for news in news_list[:15]:
-                sofiaResponse(news.title.text.encode('utf-8'))
-        except Exception as e:
-                print(e)
-            soup1 = soup(html,"lxml")
-            url_list = []
-            for vid in soup1.findAll(attrs={'class':'yt-uix-tile-link'}):
-                if ('https://www.youtube.com' + vid['href']).startswith("https://www.youtube.com/watch?v="):
-                    flag = 1
-                    final_url = 'https://www.youtube.com' + vid['href']
-                    url_list.append(final_url)
-                    url = url_list[0]
-                    ydl_opts = {}
-                    os.chdir(path)
-                    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                        ydl.download([url])
-                        vlc.play(path)
-                    if flag == 0:
-                        speak('I have not found anything in Youtube ')
+            print("Please Say somthing... "+ str(e))
+    return said.lower()
+while True:
+    text = get_audio()
+
+    PLAY = ["play music", " can you play a song", "play song", "play"," start"]
+    for phrese in PLAY:
+        if phrese in text:
+            os.system("rhythmbox-client --play")
+
+    PAUSE = ["pause music", " can you pause", "stop", "stop playing", "pause"]
+    for phrese in PAUSE:
+        if phrese in text:
+            os.system("rhythmbox-client --pause")
+
+    NEXT = ["next please", " can you play next song", "next song", "next"]
+    for phrese in NEXT:
+        if phrese in text:
+            os.system("rhythmbox-client --next")
+
+    PREV = ["previous please", " can you play previous song", "previous song", "previous"]
+    for phrese in PREV:
+        if phrese in text:
+            os.system("rhythmbox-client --previous")
