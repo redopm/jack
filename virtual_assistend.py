@@ -165,7 +165,8 @@ def assistant(command):
             flag = 0
             url = "https://www.youtube.com/results?search_query=" + mysong.replace(' ', '+')
             response = urllib2.urlopen(url)
-            html = response.read()news_url="https://news.google.com/news/rss"
+            html = response.read()
+            news_url="https://news.google.com/news/rss"
             Client=urlopen(news_url)
             xml_page=Client.read()
             Client.close()
@@ -174,7 +175,7 @@ def assistant(command):
             for news in news_list[:15]:
                 sofiaResponse(news.title.text.encode('utf-8'))
         except Exception as e:
-                print(e)
+            print(e)
             soup1 = soup(html,"lxml")
             url_list = []
             for vid in soup1.findAll(attrs={'class':'yt-uix-tile-link'}):

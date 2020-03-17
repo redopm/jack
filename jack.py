@@ -9,6 +9,7 @@ import subprocess
 import re
 import wikipedia
 from pyowm import OWM
+#import player
 #import common_question
 
 # text to speak by jack 
@@ -77,8 +78,6 @@ while True:
         for phrese in ASKME:
             if phrese in text:
                 askme(text)
-        
-
         
         NOTE_TERM = ["make a note", "write this down", "point out", "remember this", "hilight this", "write a note"]
         for phrese in NOTE_TERM:
