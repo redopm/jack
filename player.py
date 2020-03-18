@@ -20,11 +20,11 @@ def VOL_DOWN(text):
     os.system("rhythmbox-client --volume-down")
 def print_vol(text):
     os.system("rhythmbox-client --print-volume")
-def REPEAT(text):
+def REP(text):
     os.system("rhythmbox-client --repeat")
 def NO_REP(text):
     os.system("rhythmbox-client --no-repeat")
-def SHUFFLE(text):
+def SHUF(text):
     os.system("rhythmbox-client --shuffle")
 def NO_SHUF(text):
     os.system("rhythmbox-client --no-shuffle")                                                           
@@ -57,10 +57,11 @@ def get_audio():
 speak("you want to listen music then say play music")
 while True:  
     text = get_audio()
-    play_song = ["play music", " can you play a song", "play song", "play"," start"]
+    play_song = ["play music", "can you play a song", "play song", "play", "start"]
     for phrese in play_song:
         if phrese in text:
             PLAY(text)
+            speak(str(os.system("rhythmbox-client --print-playing")))
 
     pause_song = ["pause music", " can you pause", "stop", "stop playing", "pause"]
     for phrese in pause_song:
@@ -80,12 +81,12 @@ while True:
     BYE = ["bye", "quit", "band kr do"]
     for phrese in BYE:
         if phrese in text:
-            QUIT(text)
+            exit()
 
     SHUF = ["shuffle on", "mixed on", "shuffled"]
     for phrese in BYE:
         if phrese in text:
-            SHUFFLE(text)
+            SHUF(text)
 
     No_Shuffle = ["shuffle off", "no mixed", "do not shuffled"]
     for phrese in BYE:
@@ -95,11 +96,21 @@ while True:
     Repeat = ["repeat on", "one song only", "bar bar ek hi song chalao"]
     for phrese in BYE:
         if phrese in text:
-            REPEAT(text)
+            REP(text)
 
     No_Repeat = ["repeat off", "all songs play", "one by one"]
     for phrese in BYE:
         if phrese in text:
             NO_REP(text)
+
+    VolUp = ["volume up", "increase sound", "sound up", "fast sound"]
+    for phrese in BYE:
+        if phrese in text:
+            VOL_UP(text)
+
+    VolDown = ["volume down", "decrease sound", "sound down", "slow sound"]
+    for phrese in BYE:
+        if phrese in text:
+            VOL_DOWN(text)
 
 
