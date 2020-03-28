@@ -3,6 +3,7 @@ import playsound
 import speech_recognition as sr
 from pyowm import OWM
 import re
+import pyttsx3
 
 # text to speak by jack 
 def speak(text):
