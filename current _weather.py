@@ -4,6 +4,7 @@ import speech_recognition as sr
 from pyowm import OWM
 import re
 import pyttsx3
+from pyowm.caches.lrucache import LRUCache
 
 # text to speak by jack 
 def speak(text):
@@ -28,10 +29,19 @@ def get_audio():
             speak("Please Say somthing... "+ str(e))
     return said.lower()
 
-def weather(text):
+def weather():
+    API_key='ab0d5e80e8dafb2cb81fa9e82431c1fa'
+    owm = OWM(API_key)
+    #cache = LRUCache()
+    obs = owm.weather_at_place('Jaipur')
+    w = obs.get_weather()
+    print(t)
+
+weather()
 
 
-    return 
+
+'''    return 
 text = get_audio()
 
 Weather = ['current weather', 'What is weather', 'weather', "What is the weather"]
@@ -48,3 +58,4 @@ for phrese in text:
         z = w.get_sunset_time('iso')  
         speak('weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius and sunrise time is %s and sunset time is %s' % (city, k, x['temp_max'], x['temp_min'], y, z))
         
+'''
