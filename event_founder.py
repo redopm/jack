@@ -1,9 +1,14 @@
-
-
+import pytz
+from datetime import datetime
 
 MONTHS = ['january', 'February', 'March', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
 DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 DAY_EXTENTIONS = ["rd", "th", "st", "nd"]
+
+def event():
+
+
+    return
 
 
 def get_date(text):
