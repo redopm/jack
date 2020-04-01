@@ -13,8 +13,8 @@ tz_INDIA = pytz.timezone('Asia/Kolkata')
 datetime_INDIA = datetime.now(tz_INDIA) 
 date = datetime_INDIA.strftime("%H:%M:%S")
 
-MONTHS = [""]
-DAYS = [" "]
+MONTHS = ['january', '']
+DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 DAY_EXTENTIONS = ["rd", "th", "st", "nd"]
 # text to speak by jack 
 def speak(text):
