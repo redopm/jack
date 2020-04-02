@@ -9,7 +9,8 @@ import subprocess
 import re
 import wikipedia
 from pyowm import OWM
-#import player
+import webbrowser
+
 #import common_question
 
 # text to speak by jack 
@@ -32,7 +33,7 @@ def get_audio():
             said = r.recognize_google(audio)
             print('You: ' +said)
         except Exception as e:
-            speak("Please Say somthing... "+ str(e))
+            print("Please Say somthing... "+ str(e))
     return said.lower()
 
 # wish good morning, good afternoon etc
@@ -74,7 +75,7 @@ while True:
         speak("what can I do for you ?")
         text = get_audio()
 
-        ASKME = ["what about", "tell me about", "do you know about", "can i know about"]
+        ASKME = ["what about", "tell me about", "do you know about", "can i know about", "who is"]
         for phrese in ASKME:
             if phrese in text:
                 askme(text)
@@ -87,7 +88,7 @@ while True:
                 note(note_text)
                 speak("I have done.")
 
-        APP = ["open"]
+        APP = ["open", "launch"]
         for phrese in APP:
             reg_ex = re.search('open (.*)', text)
             if reg_ex:
@@ -112,13 +113,36 @@ while True:
                 w = obs.get_weather()
                 k = w.get_detailed_status()
                 x = w.get_temperature(unit='celsius')
-                y = w.get_sunrise_time('iso')
-                z = w.get_sunset_time('iso')  
+                y = w.get_rain() 
+                z = w.get_sunset_time("utc")  
                 speak('weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius and sunrise time is %s and sunset time is %s' % (city, k, x['temp_max'], x['temp_min'], y, z))
-        
+                break
 
         BYE = ['bye', 'stop', 'stop listening', "don't listen"]
         for phrese in BYE:
             if phrese in text:
                 speak("Ok, have a nice day.")
                 exit()
+
+        SEARCH = ["search on google", "google search", "can you search for me ", "can you search on google", "google"]
+        for phrese in SEARCH:
+            reg_ex = re.search('search on(.*)', text)
+            if reg_ex:
+                query = reg_ex.group(1)
+                q="https://www.google.com/search?q="+ str(query)
+                webbrowser.open(q)
+                speak("your quary is"+str(query)+"open in your default browser")
+                break
+
+        PLAY = ["play music", "open player", "play song", "start music player"]
+        import player
+        for phrese in PLAY:
+            if phrese in text:
+                player.PLAY(text)
+
+
+
+
+
+
+

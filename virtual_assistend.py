@@ -174,7 +174,7 @@ def assistant(command):
             news_list=soup_page.findAll("item")
             for news in news_list[:15]:
                 sofiaResponse(news.title.text.encode('utf-8'))
-        except Exception as e:
+        #except Exception as e:
             print(e)
             soup1 = soup(html,"lxml")
             url_list = []
