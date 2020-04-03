@@ -70,9 +70,8 @@ def askme(text):
             speak(e)
 wishme()
 #common_question.chat()
+speak("what can I do for you ?")
 while True:
-    
-        speak("what can I do for you ?")
         text = get_audio()
 
         ASKME = ["what about", "tell me about", "do you know about", "can i know about", "who is"]
@@ -130,23 +129,17 @@ while True:
             if reg_ex:
                 query = reg_ex.group(1)
                 q="https://www.google.com/search?q="+ str(query)
-                webbrowser.open(q)
+                webbrowser.open_new_tab(q)
                 speak("your quary is "+str(query)+" open in your default browser")
                 break
-
-        
+'''
         PLAY = ["play music", "open player", "play song", "start music player"]
         import player
-        for phrese in PLAY:
-            if phrese in text:
+        for phrese in text:
+            if phrese in PLAY:
                 player.play(text)
-            elif text =="stop music":
-                player.pause(text)
-            elif text=="shuffle on":
-                player.shuffle(text)
-            elif text == "repeat on":
-                player.repeat(text)
-
+                '''
+        
 
             
          

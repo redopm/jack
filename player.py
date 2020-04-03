@@ -48,9 +48,9 @@ def shuffle (text):
     return os.system("rhythmbox-client --shuffle")
 def noshuf (text):
     return os.system("rhythmbox-client --no-shuffle")
-def check (text):
-    return os.system("rhythmbox-client --check-running")
-speak("player is started !")
+def quit (text):
+    return os.system("rhythmbox-client --quit")
+speak("Welcome to jack's player !")
 try:
     while True:
         text = get_audio()
@@ -62,7 +62,7 @@ try:
                 speak(str(s))
                 play(text)
 
-        PAUSE = ["pause music", "close player", "pause song", "stop music player", "stop music"]          
+        PAUSE = ["pause music", "close music", "pause song", "stop music"]          
         for phrese in PAUSE:
             if phrese in text:
                 pause(text)
@@ -97,13 +97,24 @@ try:
             if phrese in text:                     
                 noshuf(text)
 
-        BYE = ['bye', 'stop listening', "don't listen"]
+        VOLUP = ["volume up", "increase sound"]
+        for phrese in VOLUP:
+            if phrese in text:                     
+                volup(text)
+        VOLDOWN = [ "decrease sound", "volume down", "slow sound"]
+        for phrese in VOLDOWN:
+            if phrese in text:                     
+                voldown(text)
+
+        BYE = ["don't play music", "close music player", "close player", "quit player"]
         for phrese in BYE:
             if phrese in text:
-                speak("Ok, have a nice day.")
-                pause(text)
+                quit(text)
                 exit()
+                speak("Ok, your music player is closed.")
+                break
 except Exception as e :
     print(e)
+    
 
 
