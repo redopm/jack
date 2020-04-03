@@ -118,7 +118,7 @@ while True:
                 speak('weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius and sunrise time is %s, wind status is %s' % (city, k, x['temp_max'], x['temp_min'], z, y))
                 break
 
-        BYE = ['bye', 'stop', 'stop listening', "don't listen"]
+        BYE = ['bye', 'stop listening', "don't listen"]
         for phrese in BYE:
             if phrese in text:
                 speak("Ok, have a nice day.")
@@ -131,15 +131,25 @@ while True:
                 query = reg_ex.group(1)
                 q="https://www.google.com/search?q="+ str(query)
                 webbrowser.open(q)
-                speak("your quary is"+str(query)+"open in your default browser")
+                speak("your quary is "+str(query)+" open in your default browser")
                 break
 
-        '''
+        
         PLAY = ["play music", "open player", "play song", "start music player"]
         import player
         for phrese in PLAY:
             if phrese in text:
-         '''
+                player.play(text)
+            elif text =="stop music":
+                player.pause(text)
+            elif text=="shuffle on":
+                player.shuffle(text)
+            elif text == "repeat on":
+                player.repeat(text)
+
+
+            
+         
 
 
 
