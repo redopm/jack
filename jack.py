@@ -95,16 +95,7 @@ while True:
                 appname = reg_ex.group(1)
                 os.system(appname)
                 speak("your application " +appname+ " is opened.")
-            elif appname == "google chrome":
-                os.system("google-chrome")
-                speak("your application google chrome is opened.")
-            elif appname =="terminal":
-                os.system("gnome-terminal")
-                speak("your application terminal is opened.")
-            else:
-                speak("sorry! Please try again an other name.")
                 break
-                
 
         TIME = ["what is time", "time please", "current time", "tell me the current time"]
         for phrese in TIME:
@@ -122,9 +113,9 @@ while True:
                 w = obs.get_weather()
                 k = w.get_detailed_status()
                 x = w.get_temperature(unit='celsius')
-                y = w.get_rain() 
-                z = w.get_sunset_time("utc")  
-                speak('weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius and sunrise time is %s and sunset time is %s' % (city, k, x['temp_max'], x['temp_min'], y, z))
+                y = w.get_wind() 
+                z = w.get_sunrise_time("iso") 
+                speak('weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius and sunrise time is %s, wind status is %s' % (city, k, x['temp_max'], x['temp_min'], z, y))
                 break
 
         BYE = ['bye', 'stop', 'stop listening', "don't listen"]
@@ -143,12 +134,12 @@ while True:
                 speak("your quary is"+str(query)+"open in your default browser")
                 break
 
+        '''
         PLAY = ["play music", "open player", "play song", "start music player"]
         import player
         for phrese in PLAY:
             if phrese in text:
-                player.PLAY(text)
-
+         '''
 
 
 
