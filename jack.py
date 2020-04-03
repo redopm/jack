@@ -95,6 +95,15 @@ while True:
                 appname = reg_ex.group(1)
                 os.system(appname)
                 speak("your application " +appname+ " is opened.")
+            elif appname == "google chrome":
+                os.system("google-chrome")
+                speak("your application google chrome is opened.")
+            elif appname =="terminal":
+                os.system("gnome-terminal")
+                speak("your application terminal is opened.")
+            else:
+                speak("sorry! Please try again an other name.")
+                break
                 
 
         TIME = ["what is time", "time please", "current time", "tell me the current time"]

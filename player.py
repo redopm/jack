@@ -2,7 +2,7 @@ import os
 
 
 class Player():
-    def __init__(self, play, pause, next, previous, volume_up, volume_down, shuffle, no_shuffle, repeat, no_repeat):
+    def __init__(self, play, pause, next, previous, volume_up, volume_down, shuffle, no_shuffle, repeat, no_repeat, print_play):
         self.play = play
         self.pause = pause
         self.next = next
@@ -13,12 +13,25 @@ class Player():
         self.no_shuffle = no_shuffle
         self.repeat = repeat
         self.no_repeat = no_repeat
+        self.print_play = print_play
 
-    def PLAY(self, text):
-        os.system("rhythmbox-client --play")
-        return 
-    def PAUSE(self, text):
-        os.system("rhythmbox-client --pause")
+    def is_playing(self, text):
+        '''Returns True if a song is being played'''
+        if self.print_play():
+            status = self.play
+            return status == "Playing"
+        else:
+            return status =="Pause"
+        return False
+
+    def played(self, text):
+        if self.pause == False:
+            status = os.system("rhythmbox-client --play")
+            return status == "playing"
+        return False
+
+    def PAUSED(self, text):
+        return os.system("rhythmbox-client --pause")
     def NEXT(self, text):
         os.system("rhythmbox-client --next")
     def PREV(self, text):
@@ -29,8 +42,6 @@ class Player():
         os.system("rhythmbox-client --volume-up")
     def VOL_DOWN(self, text):
         os.system("rhythmbox-client --volume-down")
-    def print_vol(self, text):
-        os.system("rhythmbox-client --print-volume")
     def REP(self, text):
         os.system("rhythmbox-client --repeat")
     def NO_REP(self, text):
