@@ -132,13 +132,8 @@ while True:
                 webbrowser.open_new_tab(q)
                 speak("your quary is "+str(query)+" open in your default browser")
                 break
-'''
-        PLAY = ["play music", "open player", "play song", "start music player"]
-        import player
-        for phrese in text:
-            if phrese in PLAY:
-                player.play(text)
-                '''
+
+          
         
 
             
